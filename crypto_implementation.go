@@ -14,10 +14,12 @@ type ProviderInstance struct {
 	key []byte
 }
 
+// NewProvider creates a new provider
 func NewProvider(key []byte) Provider {
 	return &ProviderInstance{key}
 }
 
+// GenerateKey creates a new AES-256 key using cryptographically secure random data
 func GenerateKey() []byte {
 	key := make([]byte, 32)
 
