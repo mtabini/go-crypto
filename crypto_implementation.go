@@ -6,6 +6,7 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"encoding/base64"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 )
@@ -17,6 +18,15 @@ type ProviderInstance struct {
 // NewProvider creates a new provider
 func NewProvider(key []byte) Provider {
 	return &ProviderInstance{key}
+}
+
+// GenerateRandomString creates a cryptographically secure random string
+func GenerateRandomString(length int) string {
+	res := make([]byte, length/2)
+
+	rand.Read(res)
+
+	return hex.EncodeToString(res)
 }
 
 // GenerateKey creates a new AES-256 key using cryptographically secure random data
